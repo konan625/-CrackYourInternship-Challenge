@@ -1,115 +1,78 @@
-#include<iostream>
-#include<queue>
+#include<bits/stdc++.h>
 using namespace std;
-class node{
-  public:
-    int data;
-    node* left;
-    node* right;
-    node(int d){
-    data=d;
-    left= NULL;
-    right =NULL;  
-    }
-};
+#define int             long long
+#define f(i,n)          for(int i=0;i<(n);++i)
+#define fa(i,a,n)       for(int i=a;i<=(n);++i)
+#define fd(i,a,n)       for(int i=a;i>=(n);--i)
+#define tc              int t;cin>>t;f(testcase,t)
+#define ld              long double
 
-node* buildtreearr(int *a,int s,int e){
-  if(s>e){
-    return NULL;
-    
-  }
-  int mid= s+((e-s)/2);
-  node*root = new node(a[mid]);
-  root->left= buildtreearr(a,s,mid-1);
-  root->right=buildtreearr(a,mid+1,e);
-  
-  return root;
-}
-int height(node* root){
-  if(root==NULL){
-    return 0;
-  }
-  int h1= height(root->left);
-  int h2= height(root->right);
-  return max(h1,h2)+1;
-}
-void printlevelk(node* root, int k){
-  if(root==NULL){
-    return;
-  }
-  if(k==0) return;
-  if(k==1){
-    cout<< root->data << " ";
-  return;
-  }
-  printlevelk(root->left,k-1);
-  printlevelk(root->right,k-1);
-  return;
-}
-int printatdistk(node*root, node* target, int k){
-  if(root==NULL){
-    return -1;
-  }
-  
-  if(root==target){
-    printlevelk(target,k);
-    return 0;
-  }
-  int DL= printatdistk(root->left,target,k);
-  if(DL!=-1){
-    if(DL+1==k){
-      cout<<root->data<<" ";
-    }else{
-      printlevelk(root->right,k-DL-2);
-      
-    }
-    return 1+DL;
-  }
-    int DR= printatdistk(root->right,target,k);
-  if(DR!=-1){
-    if(DR+1==k){
-      cout<<root->data<<" ";
-    
-      
-    }else{
-      printlevelk(root->left,k-DR-2);
-      
-    }
-    return 1+DR;
-  }
-  return -1;
-}
-void bfs(node*root){
-  queue<node*> q;
-  q.push(root);
-  q.push(NULL);
-  while(!q.empty( )){
-    node* f= q.front();
-    if(f==NULL){
-      cout<<endl;
-      q.pop();
-      if(!q.empty()){
-        q.push(NULL);
-      }
-    }else{
-    
-    cout<< f->data<< " ";
-    q.pop();
-    if(f->left){
-      q.push(f->left);
-    }
-    if(f->right){
-      q.push(f->right);
-    }
-  }
-}
-}
-int main(){
-int a[]={1,2,3,4,5,6,7};
-int n= sizeof(a)/sizeof(int);
-node*root=buildtreearr(a,0,n-1);
+#define pii             pair<int,int>
+#define mem(a,i)        memset(a,i,sizeof(a))
+#define all(x)          x.begin(),x.end()
+#define PI 3.1415926535897932
+#define M 1000000007
+void c_p_c() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
 
-  bfs(root);
-    node* target= root->left;
-  cout<< printatdistk(root,target,3);
+}
+// int findfreq(vector<int>& v1,int num){
+//   int count=0;
+//   for(int x:v1){
+//     if(x==num) count++;
+//   }
+//   return count;
+// }
+void solve() {
+  // int n,k;cin>>n>>k;
+  // vector<int> v1(n);
+  // map<int,int> m;
+  // for(int i=0;i<n;i+=5){
+  //       v1[i]=i+1;
+  //       if(i+1<n) v1[i+1]=i+1;m[i+1]++;
+  //       if(i+2<n) v1[i+2]=i+1;m[i+1]++;
+  //       if(i+3<n) v1[i+3]=i+1;m[i+1]++;
+  //       if(i+4<n) v1[i+4]=i+1;m[i+1]++;
+  // }
+  // v1[k-1]=0;
+  // int end=n/5;
+  // if(n%5 != 0) end++;
+  // int count=0;
+  // int scale=0;
+  // for(int i=1;i<=end;i++){
+  //   int freq=findfreq(v1,i);
+  //   if(m[i]-freq!=0) scale=i;
+  //   count+=(m[i]-freq);
+  // }
+  // cout<<count*(end-scale)<<endl;
+  int n,x;cin>>n>>x;
+  vector<char> v1(n);
+  if(n<=x && n!=1 && x!=1) cout<<-1<<endl;
+  int start=1;
+  int i=0;
+  char t='a';
+  while(start<=x){
+    v1[i]=v1[n-i-1]=t-start-1;
+    start++;
+    i++;
+  }
+  string s="";
+  for(char c:v1){
+    s+=c;
+  }
+  cout<<s<<endl;
+  
+  
+  
+  
+    
+}
+
+int32_t main() {
+
+    c_p_c();
+    tc
+    solve();
+    return 0;
 }
