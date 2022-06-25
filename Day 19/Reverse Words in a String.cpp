@@ -36,3 +36,39 @@ public:
         
     }
 };
+
+//With Constant Space
+class Solution {
+public:
+    void reverseword(string& s,int i,int j){
+        while(i<j){
+            char t=s[i];
+            s[i++]=s[j];
+            s[j--]=t;
+        }
+    }
+    string reverseWords(string s) {
+        int i=0;
+        int j=0;
+        int n=s.size();
+        int wordstart=0;
+        int wordcount=0;
+        while(i<n){
+            while(i<n && s[i]==' ') i++;
+            if(i==n) break;
+            if(wordcount) s[j++]=' ';
+            wordstart=j;
+            while(i<n && s[i]!=' '){
+                s[j]=s[i];
+                i++;j++;
+            }
+            reverseword(s,wordstart,j-1);
+            wordcount++;
+        }
+        s.resize(j);
+        reverse(s.begin(),s.end());
+        return s;
+        
+        
+    }
+};
