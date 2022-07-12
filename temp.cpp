@@ -17,55 +17,28 @@ void c_p_c() {
     cin.tie(0); cout.tie(0);
 
 }
-// int findfreq(vector<int>& v1,int num){
-//   int count=0;
-//   for(int x:v1){
-//     if(x==num) count++;
-//   }
-//   return count;
-// }
+vector<int> v{1,10,100,1000,10000,100000,1000000,10000000,100000000};
 void solve() {
-  // int n,k;cin>>n>>k;
-  // vector<int> v1(n);
-  // map<int,int> m;
-  // for(int i=0;i<n;i+=5){
-  //       v1[i]=i+1;
-  //       if(i+1<n) v1[i+1]=i+1;m[i+1]++;
-  //       if(i+2<n) v1[i+2]=i+1;m[i+1]++;
-  //       if(i+3<n) v1[i+3]=i+1;m[i+1]++;
-  //       if(i+4<n) v1[i+4]=i+1;m[i+1]++;
-  // }
-  // v1[k-1]=0;
-  // int end=n/5;
-  // if(n%5 != 0) end++;
-  // int count=0;
-  // int scale=0;
-  // for(int i=1;i<=end;i++){
-  //   int freq=findfreq(v1,i);
-  //   if(m[i]-freq!=0) scale=i;
-  //   count+=(m[i]-freq);
-  // }
-  // cout<<count*(end-scale)<<endl;
-  int n,x;cin>>n>>x;
-  vector<char> v1(n);
-  if(n<=x && n!=1 && x!=1) cout<<-1<<endl;
-  int start=1;
-  int i=0;
-  char t='a';
-  while(start<=x){
-    v1[i]=v1[n-i-1]=t-start-1;
-    start++;
-    i++;
-  }
-  string s="";
-  for(char c:v1){
-    s+=c;
-  }
-  cout<<s<<endl;
-  
-  
-  
-  
+    string s;cin>>s;
+    set<char> m;
+    int days=0;
+    if(s.size()<=3) cout<<1<<endl;
+    else {
+        int i=0;
+        while(i<s.size()){
+            if(m.size()<3){
+                m.insert(s[i]);
+                i++;
+            }
+            else if(m.size()==3){
+                day++;
+                m.clear();
+                i++;
+            }
+        }
+    }
+    cout<<days<<endl;
+
     
 }
 
