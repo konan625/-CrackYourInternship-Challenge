@@ -1,36 +1,45 @@
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
-#define int             long long
-#define f(i,n)          for(int i=0;i<(n);++i)
-#define fa(i,a,n)       for(int i=a;i<=(n);++i)
-#define fd(i,a,n)       for(int i=a;i>=(n);--i)
-#define tc              int t;cin>>t;f(testcase,t)
-#define ld              long double
+int r,c;
+int dx[]= {-1,0,1,0};
+int dy[]= {0,1,0,-1};
 
-#define pii             pair<int,int>
-#define mem(a,i)        memset(a,i,sizeof(a))
-#define all(x)          x.begin(),x.end()
-#define PI 3.1415926535897932
-#define M 1000000007
-void c_p_c() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(0); cout.tie(0);
 
+
+void flood_fill(char graph[][50], int i, int j, char ch, char color){
+  
+  if(i<0|| j<0|| i>=r|| j>=c){         //graph boundaries
+    return;
+  }
+  
+  if(graph[i][j]!= ch){                      //figure boundary
+    return;
+  }
+  
+  graph[i][j]= color;                  //make that ch into color
+  for(int k=0;k<4;k++){                 //then rec call for 4 directions
+    flood_fill(graph,i+dx[k],j+dy[k],ch,color);
+  }
+  
 }
-void solve() {
-    int n;cin>>n;
-    int rem=n%7;
-    if(rem%2==0)
-        cout<<"YES"<<endl;
-    else
-        cout<<"NO"<<endl;
-    
-}
+int main(){
+  
 
-int32_t main() {
-
-    c_p_c();
-    tc
-    solve();
-    return 0;
+  cin>> r,c;
+  
+  char graph[15][50];
+  for(int i=0;i<r;i++){
+    for(int j=0;j<c;j++){
+      cin>> graph[i][j]; 
+    }
+  }
+  
+  flood_fill(graph,6,5,'.','@');             
+    for(int i=0;i<r;i++){
+    for(int j=0;j<c;j++){
+      cout<< graph[i][j]; 
+    }
+    cout<<endl;
+  }
+  return 0;
 }
